@@ -27,6 +27,7 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
+                                    <th scope="col">Client</th>
                                     <th scope="col">Nature</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Débits</th>
@@ -39,6 +40,7 @@
                                 @foreach($operations as $operation)
                                     <tr>
                                         <td>{{$operation->id}}</td>
+                                        <td>{{$operation->clients->firstname}} {{$operation->clients->lastname}}</td>
                                         <td>{{$operation->nature}}</td>
                                         <td>{{$operation->date_operation}}</td>
                                         <td>{{$operation->outcome}}</td>

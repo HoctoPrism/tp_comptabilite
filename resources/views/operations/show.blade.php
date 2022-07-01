@@ -12,6 +12,7 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-lg-10 mx-auto">
+                <div>Nom du client : <span class="fw-bold">{{$operation->clients->firstname}} {{$operation->clients->lastname}}</span></div>
                 <div>Nom de l'opération : <span class="fw-bold">{{$operation->nature}}</span></div>
                 <div>Date de l'opération : <span class="fw-bold">{{$operation->date_operation}}</span></div>
                 <div>Débit de l'opération : <span class="fw-bold">{{$operation->outcome}}</span></div>

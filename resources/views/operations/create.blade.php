@@ -24,6 +24,14 @@
       </div>
     @endif
 
+    <div class="mb-3 col-6">
+        <label for="client" class="form-label">Client</label>
+        <select class="form-select" name="client" id="client" aria-describedby="clientHelp">
+            @foreach($clients as $client)
+                <option value="{{ $client->id }}">{{ $client->firstname }} {{ $client->lastname }}</option>
+            @endforeach
+        </select>
+    </div>
     <div class="mb-3 col-12">
         <label for="nature" class="form-label">Nature de l'opération</label>
         <input type="text" class="form-control" name="nature" id="nature" aria-describedby="natureHelp">

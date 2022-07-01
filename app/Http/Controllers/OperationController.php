@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\Payment;
 use App\Models\Category;
 use App\Models\Operation;
-use App\Models\Payment;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\Foundation\Application;
 
 class OperationController extends Controller
 {
@@ -34,12 +35,14 @@ class OperationController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
+            'client' => 'required',
             'nature' => 'required',
             'date_operation' => 'required',
             'category' => 'required',
             'payment' => 'required',
         ]);
         Operation::create([
+            'client'=> $request->client,
             'nature' => $request->nature,
             'date_operation' => $request->date_operation,
             'outcome' => $request->outcome,
@@ -58,9 +61,10 @@ class OperationController extends Controller
      */
     public function create(): Application|Factory|View
     {
+        $clients = Client::all();
         $categories = Category::all();
         $payments = Payment::all();
-        return view('operations.create', compact('categories', 'payments'));
+        return view('operations.create', compact('categories', 'payments', 'clients'));
     }
 
     /**
@@ -82,10 +86,11 @@ class OperationController extends Controller
      */
     public function edit(int $id): Application|Factory|View
     {
+        $clients = Client::all();
         $categories = Category::all();
         $payments = Payment::all();
         $operation = Operation::findOrFail($id);
-        return view('operations.edit', compact('operation', 'payments', 'categories'));
+        return view('operations.edit', compact('operation', 'payments', 'categories', 'clients'));
     }
 
     /**
@@ -98,6 +103,7 @@ class OperationController extends Controller
     public function update(Request $request, int $id): RedirectResponse
     {
         $updateOperation = $request->validate([
+            'client' => 'required',
             'nature' => 'required',
             'date_operation' => 'required',
             'income' => "nullable",
