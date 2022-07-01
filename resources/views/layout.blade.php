@@ -8,7 +8,7 @@
 </head>
 <body>
     <header class="d-flex justify-content-between align-items-center p-3 text-white bg-dark">
-        <div>Projet Heroes</div>
+        <div>Projet Comptabilité</div>
         <div id="errorR" class="fw-bold text-danger"></div>
         <div class="d-flex justify-content-between align-items-center">
             <div class="me-4">
