@@ -12,6 +12,7 @@
         <div id="errorR" class="fw-bold text-danger"></div>
         <div class="d-flex justify-content-between align-items-center">
             <div class="me-4">
+                <a href="{{ url('/clients') }}" class="text-sm text-white text-decoration-none me-2">clients</a>
                 <a href="{{ url('/operations') }}" class="text-sm text-white text-decoration-none me-2">operations</a>
                 <a href="{{ url('/categories') }}" class="text-sm text-white text-decoration-none me-2">categories</a>
                 <a href="{{ url('/payments') }}" class="text-sm text-white text-decoration-none me-2">payments</a>
