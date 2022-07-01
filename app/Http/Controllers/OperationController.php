@@ -117,8 +117,8 @@ class OperationController extends Controller
      */
     public function destroy(int $id): Redirector|RedirectResponse|Application
     {
-        $payment = Operation::findOrFail($id);
-        $payment->delete();
+        $operation = Operation::findOrFail($id);
+        $operation->delete();
         return redirect('/operations')->with('success', 'Opération supprimée');
     }
 }
