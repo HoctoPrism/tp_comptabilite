@@ -71,7 +71,7 @@ class OperationController extends Controller
      */
     public function show(int $id): Application|Factory|View
     {
-        return view('operations.show', ['payment' => Operation::findOrFail($id)]);
+        return view('operations.show', ['operation' => Operation::findOrFail($id)]);
     }
 
     /**
