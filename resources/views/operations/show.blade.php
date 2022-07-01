@@ -12,7 +12,12 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-lg-10 mx-auto">
-                <div>Nom du héro : <span class="fw-bold">{{$operation->name}}</span></div>
+                <div>Nom de l'opération : <span class="fw-bold">{{$operation->nature}}</span></div>
+                <div>Date de l'opération : <span class="fw-bold">{{$operation->date_operation}}</span></div>
+                <div>Débit de l'opération : <span class="fw-bold">{{$operation->outcome}}</span></div>
+                <div>Crédit de l'opération : <span class="fw-bold">{{$operation->income}}</span></div>
+                <div>Catégorie de l'opération : <span class="fw-bold">{{$operation->categories->name}}</span></div>
+                <div>Moyen de paiment de l'opération : <span class="fw-bold">{{$operation->payments->name}}</span></div>
                 <h1>C'est bien moche</h1>
                 <a href="{{ route('operations.index')}}" class="btn btn-primary btn-sm">retour à la liste</a>
             </div>

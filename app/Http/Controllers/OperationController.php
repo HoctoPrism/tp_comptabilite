@@ -71,7 +71,7 @@ class OperationController extends Controller
      */
     public function show(int $id): Application|Factory|View
     {
-        return view('operations.show', ['payment' => Operation::findOrFail($id)]);
+        return view('operations.show', ['operation' => Operation::findOrFail($id)]);
     }
 
     /**
@@ -117,8 +117,8 @@ class OperationController extends Controller
      */
     public function destroy(int $id): Redirector|RedirectResponse|Application
     {
-        $payment = Operation::findOrFail($id);
-        $payment->delete();
+        $operation = Operation::findOrFail($id);
+        $operation->delete();
         return redirect('/operations')->with('success', 'Opération supprimée');
     }
 }
