@@ -27,5 +27,6 @@ Route::resource('clients', ClientController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('payments', PaymentController::class);
 Route::resource('operations', OperationController::class);
+Route::post('/operations/total', [OperationController::class, 'total'])->name('operations.total');
 
 require __DIR__.'/auth.php';

@@ -30,6 +30,21 @@
                 </div>
             </div>
         </div>
+        <form method="POST" action="{{ route('operations.total') }}">
+            @csrf
+          <div class="mb-3">
+            <label for="total" class="form-label">Date pour calculer le total du mois</label>
+            <input type="date" class="form-control" id="total" aria-describedby="totalHelp" name="total">
+          </div>
+          <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+
+        @if(session()->get('total'))
+          <div>
+              <div>le total de la période : {{ session()->get('year') }}/{{ session()->get('month') }} est de : <span class="fw-bold">{{ session()->get('total') }}€</span></div>
+          </div><br />
+        @endif
+
     </div>
         @endsection
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>

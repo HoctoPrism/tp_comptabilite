@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Facades\DB;
 
 class OperationController extends Controller
 {
@@ -127,4 +128,36 @@ class OperationController extends Controller
         $operation->delete();
         return redirect('/operations')->with('success', 'Opération supprimée');
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function total(Request $request): RedirectResponse
+    {
+        list($year, $month, $day) = explode("-", $request->total);
+
+        $total = DB::table('operations')
+            ->select(DB::raw('SUM(income) - SUM(outcome) as total'))
+            ->addSelect(DB::raw('SUM(income) as income'))
+            ->addSelect(DB::raw('SUM(outcome) as outcome'))
+            ->whereYear('date_operation', "=", $year)
+            ->whereMonth('date_operation', '=', $month)
+            ->get()
+            ->toArray()
+        ;
+
+        if (!empty($total[0]->total)){
+            $total = $total[0]->total;
+        } elseif (!empty($total[0]->outcome)){
+            $total = $total[0]->outcome;
+        } else {
+            $total = $total[0]->income;
+        }
+
+       return redirect()->route('operations.index')->with('total', $total)->with('year', $year)->with('month', $month);
+    }
+
 }
