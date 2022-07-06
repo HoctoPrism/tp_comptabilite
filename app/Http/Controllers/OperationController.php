@@ -153,9 +153,12 @@ class OperationController extends Controller
             $total = $total[0]->total;
         } elseif (!empty($total[0]->outcome)){
             $total = $total[0]->outcome;
-        } else {
+        } elseif(!empty($total[0]->income)) {
             $total = $total[0]->income;
+        } else {
+            $total = 'none';
         }
+
 
        return redirect()->route('operations.index')->with('total', $total)->with('year', $year)->with('month', $month);
     }

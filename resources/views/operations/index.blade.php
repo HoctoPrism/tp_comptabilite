@@ -40,9 +40,12 @@
         </form>
 
         @if(session()->get('total'))
-          <div>
-              <div>le total de la période : {{ session()->get('year') }}/{{ session()->get('month') }} est de : <span class="fw-bold">{{ session()->get('total') }}€</span></div>
-          </div><br />
+            @if(session()->get('total') === 'none')
+              <div>Aucun résultat pour la période : {{ session()->get('year') }}/{{ session()->get('month') }}</div>
+              @else
+                <div>le total de la période : {{ session()->get('year') }}/{{ session()->get('month') }} est de : <span class="fw-bold">{{ session()->get('total') }}€</span></div>
+            @endif
+            <br>
         @endif
 
     </div>
